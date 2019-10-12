@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="回流和重绘参考链接：https://juejin.im/post/5c6cb7b4f265da2dae511a3d 浏览器渲染过程 1、解析HTML，生成DOM树，解析CSS，生成CSSOM树 2、将DOM树和CSSOM树结合，生成渲染树(Render Tree) 3、Layout(回流):根据生成的渲染树，进行回流(Layout)，得到节点的几何信息（位置，大小） 4、Painting(重绘):">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css里的重绘和回流">
+<meta property="og:url" content="http://1142596854.github.io/2019/10/12/css总结1/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="回流和重绘参考链接：https://juejin.im/post/5c6cb7b4f265da2dae511a3d 浏览器渲染过程 1、解析HTML，生成DOM树，解析CSS，生成CSSOM树 2、将DOM树和CSSOM树结合，生成渲染树(Render Tree) 3、Layout(回流):根据生成的渲染树，进行回流(Layout)，得到节点的几何信息（位置，大小） 4、Painting(重绘):">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/10/16798b8db54caa31?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/10/16798b8d839a7d6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/10/16798b8d83f0e188?imageslim">
+<meta property="og:updated_time" content="2019-10-12T09:09:31.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css里的重绘和回流">
+<meta name="twitter:description" content="回流和重绘参考链接：https://juejin.im/post/5c6cb7b4f265da2dae511a3d 浏览器渲染过程 1、解析HTML，生成DOM树，解析CSS，生成CSSOM树 2、将DOM树和CSSOM树结合，生成渲染树(Render Tree) 3、Layout(回流):根据生成的渲染树，进行回流(Layout)，得到节点的几何信息（位置，大小） 4、Painting(重绘):">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/12/10/16798b8db54caa31?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://1142596854.github.io/2019/10/12/css总结1/">
+
+
+
+
+
+  <title>css里的重绘和回流 | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/12/css总结1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakura Chiyo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css里的重绘和回流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T16:31:11+08:00">
+                2019-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="回流和重绘"><a href="#回流和重绘" class="headerlink" title="回流和重绘"></a>回流和重绘</h1><p>参考链接：<a href>https://juejin.im/post/5c6cb7b4f265da2dae511a3d</a></p>
+<h2 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h2><p><img src="https://user-gold-cdn.xitu.io/2018/12/10/16798b8db54caa31?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="webkitæ¸²æè¿ç¨"></p>
+<p>1、解析HTML，生成DOM树，解析CSS，生成CSSOM树</p>
+<p>2、将DOM树和CSSOM树结合，生成渲染树(Render Tree)</p>
+<p>3、Layout(回流):根据生成的渲染树，进行回流(Layout)，得到节点的几何信息（位置，大小）</p>
+<p>4、Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</p>
+<p>5、Display:将像素发送给GPU，展示在页面上。（这一步其实还有很多内容，比如会在GPU将多个合成层合并为同一个层，并展示在页面中。而css3硬件加速的原理则是新建合成层，这里我们不展开，之后有机会会写一篇博客）</p>
+<h2 id="生成渲染树"><a href="#生成渲染树" class="headerlink" title="生成渲染树"></a>生成渲染树</h2><p><img src="https://user-gold-cdn.xitu.io/2018/12/10/16798b8d839a7d6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="çææ¸²ææ "></p>
+<ol>
+<li>从DOM树的根节点开始遍历每个可见节点。</li>
+<li>对于每个可见的节点，找到CSSOM树中对应的规则，并应用它们。</li>
+<li>根据每个可见节点以及其对应的样式，组合生成渲染树</li>
+</ol>
+<h2 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h2><p>将dom节点以及对应的样式结合起来以后还需要计算它们在设备视口中的位置和大小，这个计算的阶段就是回流。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/10/16798b8d83f0e188?imageslim" alt="img"></p>
+<p>第一个div将节点的显示尺寸设置为视口宽度的50%，第二个div将其尺寸设置为父节点的50%。而在回流这个阶段，我们就需要根据视口具体的宽度，将其转为实际的像素值。</p>
+<h2 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h2><p>我们通过构造渲染树和回流阶段，我们知道了哪些节点是可见的，以及可见节点的样式和具体的几何信息(位置、大小)，那么我们就可以将渲染树的每个节点都转换为屏幕上的实际像素，这个阶段就叫做重绘节点。</p>
+<h2 id="重绘和回流发生的时间"><a href="#重绘和回流发生的时间" class="headerlink" title="重绘和回流发生的时间"></a>重绘和回流发生的时间</h2><p><strong>回流一定触发重绘，重绘不一定触发回流</strong></p>
+<p>页面的布局和几何信息发生变化的时候触发回流</p>
+<ul>
+<li>添加删除可见dom元素</li>
+<li>元素位置变化</li>
+<li>元素尺寸发生变化（高度宽度，内边距外边距，边框大小）</li>
+<li>内容变化（文本变化，图片被不同尺寸的图片代替）</li>
+<li>页面开始渲染的时候</li>
+<li>浏览器窗口尺寸变化</li>
+</ul>
+<h2 id="减少回流和重绘"><a href="#减少回流和重绘" class="headerlink" title="减少回流和重绘"></a>减少回流和重绘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const el = document.getElementById(&apos;test&apos;);</span><br><span class="line">el.style.padding = &apos;5px&apos;;</span><br><span class="line">el.style.borderLeft = &apos;1px&apos;;</span><br><span class="line">el.style.borderRight = &apos;2px&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>三次操作都会引起回流。现代浏览器做了优化以后只会触发一次重排。</p>
+<p>旧浏览器会发生三次重排</p>
+<p>优化写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">修改class</span><br><span class="line">const el = document.getElementById(&apos;test&apos;);</span><br><span class="line">el.className += &apos; active&apos;;</span><br><span class="line">或者csstext</span><br><span class="line">const el = document.getElementById(&apos;test&apos;);</span><br><span class="line">el.style.cssText += &apos;border-left: 1px; border-right: 2px; padding: 5px;&apos;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量修改dom"><a href="#批量修改dom" class="headerlink" title="批量修改dom"></a>批量修改dom</h2><p>减少回流重绘次数：</p>
+<ol>
+<li>使元素脱离文档流</li>
+<li>对其进行多次修改</li>
+<li>将元素带回到文档中</li>
+</ol>
+<p>让dom脱离文档流的方法</p>
+<ul>
+<li><p>隐藏元素，应用修改，重新显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function appendDataToElement(appendToElement, data) &#123;</span><br><span class="line">    let li;</span><br><span class="line">    for (let i = 0; i &lt; data.length; i++) &#123;</span><br><span class="line">    	li = document.createElement(&apos;li&apos;);</span><br><span class="line">        li.textContent = &apos;text&apos;;</span><br><span class="line">        appendToElement.appendChild(li);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const ul = document.getElementById(&apos;list&apos;);</span><br><span class="line">ul.style.display = &apos;none&apos;;</span><br><span class="line">appendDataToElement(ul, data);</span><br><span class="line">ul.style.display = &apos;block&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用文档片段(document fragment)在当前DOM之外构建一个子树，再把它拷贝回文档。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const ul = document.getElementById(&apos;list&apos;);</span><br><span class="line">const fragment = document.createDocumentFragment();</span><br><span class="line">appendDataToElement(fragment, data);</span><br><span class="line">ul.appendChild(fragment);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const ul = document.getElementById(&apos;list&apos;);</span><br><span class="line">const clone = ul.cloneNode(true);</span><br><span class="line">appendDataToElement(clone, data);</span><br><span class="line">ul.parentNode.replaceChild(clone, ul);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="css3硬件加速"><a href="#css3硬件加速" class="headerlink" title="css3硬件加速"></a>css3硬件加速</h2><p>使用后不需要回流重绘</p>
+<p>常见属性</p>
+<ul>
+<li>transfor</li>
+<li>opacit</li>
+<li>filters</li>
+<li>will-change（？？）</li>
+</ul>
+<h1 id="display-none-和-visibility-hidden的区别"><a href="#display-none-和-visibility-hidden的区别" class="headerlink" title="display:none  和 visibility:hidden的区别"></a>display:none  和 visibility:hidden的区别</h1><ul>
+<li>相同：让元素不可见</li>
+<li>不同：<ul>
+<li>display:none 让元素在渲染树中中消失，渲染不占据空间；visibility:hidden不让元素从渲染树中消失但是内容不可见</li>
+<li>display:none不能继承，子节点消失是从渲染树中彻底消失，修改子节点属性也没有办法显示；visibility是继承的属性，更改子节点属性可以恢复子节点的显示</li>
+<li>display会导致重排，visibility只造成重绘 </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>相同：让元素在文档中不可见</li>
+<li>不同</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/26/koa2相关/" rel="next" title="koa2相关">
+                <i class="fa fa-chevron-left"></i> koa2相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/12/BFC相关-1/" rel="prev" title="BFC相关">
+                BFC相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Sakura Chiyo">
+            
+              <p class="site-author-name" itemprop="name">Sakura Chiyo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回流和重绘"><span class="nav-number">1.</span> <span class="nav-text">回流和重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成渲染树"><span class="nav-number">1.2.</span> <span class="nav-text">生成渲染树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流"><span class="nav-number">1.3.</span> <span class="nav-text">回流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重绘"><span class="nav-number">1.4.</span> <span class="nav-text">重绘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重绘和回流发生的时间"><span class="nav-number">1.5.</span> <span class="nav-text">重绘和回流发生的时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少回流和重绘"><span class="nav-number">1.6.</span> <span class="nav-text">减少回流和重绘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量修改dom"><span class="nav-number">1.7.</span> <span class="nav-text">批量修改dom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css3硬件加速"><span class="nav-number">1.8.</span> <span class="nav-text">css3硬件加速</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#display-none-和-visibility-hidden的区别"><span class="nav-number">2.</span> <span class="nav-text">display:none  和 visibility:hidden的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakura Chiyo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
