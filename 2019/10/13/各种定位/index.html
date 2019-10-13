@@ -89,7 +89,13 @@
 <meta property="og:description" content="display参考 display：none不会占据空间，不会显示，主要用于改善重排和重绘 display：inline将元素设置为行内元素。设置了以后再设置元素的高度和宽度都无效，text-align也无效，设置了line-height会让line元素居中 display：block设置为块级元素。默认宽度继承父亲宽度，独占一行。高度默认以子元素撑开的高度为准，也可以指定高度 123456789">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/1.png">
-<meta property="og:updated_time" content="2019-10-13T02:03:13.183Z">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/2.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/3.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/4.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/5.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/6.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/13/各种定位/7.png">
+<meta property="og:updated_time" content="2019-10-13T02:57:09.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种定位">
 <meta name="twitter:description" content="display参考 display：none不会占据空间，不会显示，主要用于改善重排和重绘 display：inline将元素设置为行内元素。设置了以后再设置元素的高度和宽度都无效，text-align也无效，设置了line-height会让line元素居中 display：block设置为块级元素。默认宽度继承父亲宽度，独占一行。高度默认以子元素撑开的高度为准，也可以指定高度 123456789">
@@ -318,8 +324,46 @@
 <h2 id="display：flex"><a href="#display：flex" class="headerlink" title="display：flex"></a>display：flex</h2><p>见table和flex</p>
 <h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><a href="https://juejin.im/entry/59c253806fb9a00a4455fa0a" target="_blank" rel="noopener"></a></p>
 <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>无特殊定位，遵循文档流</p>
-<h1 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h1><p>相对定位是相对对象出于标准文档流中的位置依据top和left定位。top和left并不改变对象在文档流中的占位空间。</p>
+<h2 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h2><p>相对定位是相对对象出于标准文档流中的位置依据top和left定位。top和left并不改变对象在文档流中的占位空间。</p>
 <p><img src="//1142596854.github.io/2019/10/13/各种定位/1.png" alt></p>
+<p>marging和padding会改变对象在标准文档流中的占位空间</p>
+<p><img src="//1142596854.github.io/2019/10/13/各种定位/2.png" alt></p>
+<h2 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h2><p>脱离了标准文档流，相对于static定位以外的第一个父元素，使用left和top进行绝对定位。（<strong>使用absolute的时候必须指定left，top，right和bottom中的至少一个</strong>）</p>
+<p>实质上是相对于static定位以外的第一个父元素的border进行定位</p>
+<p><img src="//1142596854.github.io/2019/10/13/各种定位/3.png" alt></p>
+<h2 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h2><p>脱离了文档流，以窗口为原点进行偏移定位，不会随着滚动条的滚动而偏移</p>
+<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><p>两个同级元素拥有同样的值，那么将依据他们在文档六中的顺序层叠</p>
+<p>父子关系不能用z-index设定上下关系</p>
+<h1 id="float"><a href="#float" class="headerlink" title="float"></a>float</h1><p><a href="https://juejin.im/post/5a260c6d6fb9a0452a3c2c6a" target="_blank" rel="noopener">参考链接</a></p>
+<p>浮动元素会从普通文档流中脱离，会影响周围元素的对齐进行焕然</p>
+<p>让block元素无视float元素，让inline元素流水一样环绕着float团苏来实现浮动布局</p>
+<p>浮动会向左向右浮动，直到碰到另一个浮动元素</p>
+<h2 id="元素特性"><a href="#元素特性" class="headerlink" title="元素特性"></a>元素特性</h2><h3 id="块级框"><a href="#块级框" class="headerlink" title="块级框"></a>块级框</h3><p>元素被设置浮动后，浮动元素会生成一个块级框，可以设置他的宽和高</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.div1&#123;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	border: 3px solid black;</span><br><span class="line">&#125;</span><br><span class="line">.div2 &#123;</span><br><span class="line">	float: left;</span><br><span class="line">	padding:10px;</span><br><span class="line">	border: 3px solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   &lt;div class=&quot;div1&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;image1.jpg&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;div2&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;image2.jpg&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/13/各种定位/4.png" alt></p>
+<p>默认情况下，div元素的宽是100%，一旦让该div浮动起来，立刻会像inline元素一样产生包裹性，宽度会跟随内容自适应。</p>
+<p>行内元素的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">       &lt;span class=&quot;rule1&quot;&gt;</span><br><span class="line">           首页</span><br><span class="line">       &lt;/span&gt;</span><br><span class="line">       &lt;span class=&quot;rule1&quot;&gt;</span><br><span class="line">           发现</span><br><span class="line">       &lt;/span&gt;</span><br><span class="line">       &lt;span class=&quot;rule1&quot;&gt;</span><br><span class="line">           动态</span><br><span class="line">       &lt;/span&gt;</span><br><span class="line">       &lt;span class=&quot;rule1&quot;&gt;</span><br><span class="line">           我的</span><br><span class="line">       &lt;/span&gt;</span><br><span class="line">   &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; </span><br><span class="line">	background: #d32d2d; </span><br><span class="line">	padding: 10px; </span><br><span class="line">	width: 500px; </span><br><span class="line">	height: 400px; </span><br><span class="line">&#125;</span><br><span class="line">.rule1 &#123; </span><br><span class="line">	float: left; </span><br><span class="line">	margin: 10px; </span><br><span class="line">	padding: 10px; </span><br><span class="line">	background: #eee; </span><br><span class="line">	width: 100px; </span><br><span class="line">	text-align: center; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/13/各种定位/5.png" alt></p>
+<p>当span设置float属性后，可以指定width，height值。 同时可以发现，当多个元素指定为float且同时为left/right时，元素是紧挨着排列，行内宽度不够时再换行排列。</p>
+<p>行内元素设置float以后可以近似认为是具有inline-block的属性，可以设置宽高等</p>
+<h3 id="高度崩塌"><a href="#高度崩塌" class="headerlink" title="高度崩塌"></a>高度崩塌</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;div class=&quot;div1&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;image1.jpg&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;div2&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;image2.jpg&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.div1&#123;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	border: 3px solid black;</span><br><span class="line">&#125;</span><br><span class="line">.div2 &#123;</span><br><span class="line">	border: 3px solid red;</span><br><span class="line">&#125;</span><br><span class="line">.div2 img &#123;</span><br><span class="line">	float: left;</span><br><span class="line">	padding:10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/13/各种定位/6.png" alt></p>
+<p>div2的高度没有被里面的img元素撑起来</p>
+<p>因为img设置了浮动以后脱离了文档流，div2则认为里面没有元素，发生了高度坍塌</p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p>使用伪元素清除浮动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    .clearfix:after&#123;/*伪元素是行内元素 正常浏览器清除浮动方法*/</span><br><span class="line">        content: &quot;&quot;;</span><br><span class="line">        display: block;</span><br><span class="line">        height: 0;</span><br><span class="line">        clear:both;</span><br><span class="line">        visibility: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    .clearfix&#123;</span><br><span class="line">        *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;fahter clearfix&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;big&quot;&gt;big&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;small&quot;&gt;small&lt;/div&gt;</span><br><span class="line">        &lt;!--&lt;div class=&quot;clear&quot;&gt;额外标签法&lt;/div&gt;--&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">原文链接：https://blog.csdn.net/h_qingyi/article/details/81269667</span><br></pre></td></tr></table></figure>
+
+<h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><p><img src="//1142596854.github.io/2019/10/13/各种定位/7.png" alt></p>
 
       
     </div>
@@ -344,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/13/display-positon-float/" rel="next" title="display,position,float">
-                <i class="fa fa-chevron-left"></i> display,position,float
+              <a href="/2019/10/12/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
               </a>
             
           </div>
@@ -431,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -477,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#display"><span class="nav-number">1.</span> <span class="nav-text">display</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#display：none"><span class="nav-number">1.1.</span> <span class="nav-text">display：none</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：inline"><span class="nav-number">1.2.</span> <span class="nav-text">display：inline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：block"><span class="nav-number">1.3.</span> <span class="nav-text">display：block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：list-item"><span class="nav-number">1.4.</span> <span class="nav-text">display：list-item</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：inline-block"><span class="nav-number">1.5.</span> <span class="nav-text">display：inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display-table"><span class="nav-number">1.6.</span> <span class="nav-text">display:table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：flex"><span class="nav-number">1.7.</span> <span class="nav-text">display：flex</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#position"><span class="nav-number">2.</span> <span class="nav-text">position</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">2.1.</span> <span class="nav-text">static</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#relative"><span class="nav-number">3.</span> <span class="nav-text">relative</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#display"><span class="nav-number">1.</span> <span class="nav-text">display</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#display：none"><span class="nav-number">1.1.</span> <span class="nav-text">display：none</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：inline"><span class="nav-number">1.2.</span> <span class="nav-text">display：inline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：block"><span class="nav-number">1.3.</span> <span class="nav-text">display：block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：list-item"><span class="nav-number">1.4.</span> <span class="nav-text">display：list-item</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：inline-block"><span class="nav-number">1.5.</span> <span class="nav-text">display：inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display-table"><span class="nav-number">1.6.</span> <span class="nav-text">display:table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display：flex"><span class="nav-number">1.7.</span> <span class="nav-text">display：flex</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#position"><span class="nav-number">2.</span> <span class="nav-text">position</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">2.1.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#relative"><span class="nav-number">2.2.</span> <span class="nav-text">relative</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#absolute"><span class="nav-number">2.3.</span> <span class="nav-text">absolute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fixed"><span class="nav-number">2.4.</span> <span class="nav-text">fixed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#z-index"><span class="nav-number">2.5.</span> <span class="nav-text">z-index</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#float"><span class="nav-number">3.</span> <span class="nav-text">float</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#元素特性"><span class="nav-number">3.1.</span> <span class="nav-text">元素特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#块级框"><span class="nav-number">3.1.1.</span> <span class="nav-text">块级框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高度崩塌"><span class="nav-number">3.1.2.</span> <span class="nav-text">高度崩塌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动"><span class="nav-number">3.2.</span> <span class="nav-text">清除浮动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系"><span class="nav-number">4.</span> <span class="nav-text">关系</span></a></li></ol></div>
             
 
           </div>
