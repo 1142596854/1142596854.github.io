@@ -81,17 +81,19 @@
 
 
 
-<meta name="description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta name="description" content="参考   apply和call区别123456789var a =&amp;#123;    name : &amp;quot;Cherry&amp;quot;,    fn : function (a,b) &amp;#123;        console.log( a + b)    &amp;#125;&amp;#125;var b = a.fn;b.call(a,1,2)       // 3  123456789var a =&amp;#1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="callee和caller">
-<meta property="og:url" content="http://1142596854.github.io/2019/10/14/callee和caller/index.html">
+<meta property="og:title" content="bind和call和apply">
+<meta property="og:url" content="http://1142596854.github.io/2019/10/14/bind和call和apply/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta property="og:description" content="参考   apply和call区别123456789var a =&amp;#123;    name : &amp;quot;Cherry&amp;quot;,    fn : function (a,b) &amp;#123;        console.log( a + b)    &amp;#125;&amp;#125;var b = a.fn;b.call(a,1,2)       // 3  123456789var a =&amp;#1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-14T10:13:04.854Z">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/14/bind和call和apply/1.png">
+<meta property="og:updated_time" content="2019-10-14T11:46:14.221Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="callee和caller">
-<meta name="twitter:description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta name="twitter:title" content="bind和call和apply">
+<meta name="twitter:description" content="参考   apply和call区别123456789var a =&amp;#123;    name : &amp;quot;Cherry&amp;quot;,    fn : function (a,b) &amp;#123;        console.log( a + b)    &amp;#125;&amp;#125;var b = a.fn;b.call(a,1,2)       // 3  123456789var a =&amp;#1">
+<meta name="twitter:image" content="http://1142596854.github.io/2019/10/14/bind和call和apply/1.png">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://1142596854.github.io/2019/10/14/callee和caller/">
+  <link rel="canonical" href="http://1142596854.github.io/2019/10/14/bind和call和apply/">
 
 
 
 
 
-  <title>callee和caller | 博客</title>
+  <title>bind和call和apply | 博客</title>
   
 
 
@@ -236,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/14/callee和caller/">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/14/bind和call和apply/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sakura Chiyo">
@@ -253,7 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">callee和caller</h1>
+          <h1 class="post-title" itemprop="name headline">bind和call和apply</h1>
         
 
         <div class="post-meta">
@@ -265,7 +267,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T17:17:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T19:19:56+08:00">
                 2019-10-14
               </time>
             
@@ -303,26 +305,17 @@
       
 
       
-        <p><a href="https://juejin.im/entry/58184ccda22b9d00679976c0" target="_blank" rel="noopener">参考</a></p>
-<h1 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h1><p>arguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fun(f1)&#123;</span><br><span class="line">    console.log(f1);</span><br><span class="line">    console.log(arguments[0]);</span><br><span class="line">    console.log(arguments[1]);  </span><br><span class="line">&#125;</span><br><span class="line">fun(1,2);</span><br></pre></td></tr></table></figure>
+        <p><a href="https://juejin.im/post/59bfe84351882531b730bac2" target="_blank" rel="noopener">参考</a></p>
+<p><a href="https://www.runoob.com/w3cnote/js-call-apply-bind.html" target="_blank" rel="noopener"></a></p>
+<p><img src="//1142596854.github.io/2019/10/14/bind和call和apply/1.png" alt></p>
+<h1 id="apply和call区别"><a href="#apply和call区别" class="headerlink" title="apply和call区别"></a>apply和call区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;</span><br><span class="line">    name : &quot;Cherry&quot;,</span><br><span class="line">    fn : function (a,b) &#123;</span><br><span class="line">        console.log( a + b)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn;</span><br><span class="line">b.call(a,1,2)       // 3</span><br></pre></td></tr></table></figure>
 
-<p>arguments还可以帮助我们在javascript中实现函数重载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function fun(f1) &#123;</span><br><span class="line">        if(arguments.length === 1) &#123;</span><br><span class="line">            console.log(&quot;我是一个参数的fun:&quot;+arguments[0]);</span><br><span class="line">        &#125; else if(arguments.length === 2) &#123;</span><br><span class="line">            console.log(&quot;我是两个参数的fun:&quot;+arguments[0]+arguments[1]);</span><br><span class="line">        &#125; else if(arguments.length === 3) &#123;</span><br><span class="line">            console.log(&quot;我是三个参数的fun:&quot;+arguments[0]+arguments[1]+arguments[2]);</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            console.log(&quot;参数太多啦&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">fun(1,&quot;kx&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;</span><br><span class="line">    name : &quot;Cherry&quot;,</span><br><span class="line">    fn : function (a,b) &#123;</span><br><span class="line">        console.log( a + b)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn;</span><br><span class="line">b.apply(a,[1,2])     // 3</span><br></pre></td></tr></table></figure>
 
-<p>arguments对象不是一个Array、它类似于Array，但不具有除了length方法的任何方法，但它可以被转换为一个真正的Array</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr = Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure>
+<p>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
+<h1 id="bind和apply，call的区别"><a href="#bind和apply，call的区别" class="headerlink" title="bind和apply，call的区别"></a>bind和apply，call的区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;</span><br><span class="line">    name : &quot;Cherry&quot;,</span><br><span class="line">    fn : function (a,b) &#123;</span><br><span class="line">        console.log( a + b)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn;</span><br><span class="line">b.bind(a,1,2)()           // 3</span><br></pre></td></tr></table></figure>
 
-<h1 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h1><p>callee是arguments对象的一个属性、用来指向当前执行的函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">&#125;</span><br><span class="line">fun();function fun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure>
-
-<p>返回的就是fun函数本身</p>
-<p>我们还可以用它来验证传入的参数是否与形参相等</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fun(fun1,fun2)&#123;</span><br><span class="line">    if(arguments.length===arguments.callee.length)&#123;</span><br><span class="line">        console.log(&quot;参数正确&quot;);</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        console.log(&quot;参数不正确&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun(1,1);</span><br></pre></td></tr></table></figure>
-
-<h1 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h1><p>caller是function对象的一个属性用于返回一个function引用、它返回调用它的function对象、若直接在全局环境下调用fun1 则返回null、在fun2里调用之后返回fun2、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fun1()&#123;</span><br><span class="line">console.log(arguments.callee.caller);</span><br><span class="line">&#125;</span><br><span class="line">function fun2()&#123;</span><br><span class="line">    fun1();</span><br><span class="line">&#125;</span><br><span class="line">fun1();</span><br><span class="line">fun2();</span><br></pre></td></tr></table></figure>
-
+<p>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。</p>
 
       
     </div>
@@ -347,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/14/null和undefined/" rel="next" title="null和undefined">
-                <i class="fa fa-chevron-left"></i> null和undefined
+              <a href="/2019/10/14/各种宽高的获取/" rel="next" title="各种宽高的获取">
+                <i class="fa fa-chevron-left"></i> 各种宽高的获取
               </a>
             
           </div>
@@ -357,8 +350,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/14/深浅拷贝/" rel="prev" title="深浅拷贝">
-                深浅拷贝 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/14/typeof和instanceof/" rel="prev" title="typeof和instanceof">
+                typeof和instanceof <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,7 +477,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#arguments"><span class="nav-number">1.</span> <span class="nav-text">arguments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#callee"><span class="nav-number">2.</span> <span class="nav-text">callee</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#caller"><span class="nav-number">3.</span> <span class="nav-text">caller</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#apply和call区别"><span class="nav-number">1.</span> <span class="nav-text">apply和call区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bind和apply，call的区别"><span class="nav-number">2.</span> <span class="nav-text">bind和apply，call的区别</span></a></li></ol></div>
             
 
           </div>

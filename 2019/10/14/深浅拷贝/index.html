@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta name="description" content="参考 https://juejin.im/post/5b5dcf8351882519790c9a2e 浅拷贝浅拷贝只会将对象的各个属性进行依次复制，并不会进行递归复制，也就是说只会赋值目标对象的第一层属性。 对于目标对象第一层为基本数据类型的数据，就是直接赋值，即「传值」； 而对于目标对象第一层为引用数据类型的数据，就是直接赋存于栈内存中的堆内存地址，即「传址」。 实现：  Object.assi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="callee和caller">
-<meta property="og:url" content="http://1142596854.github.io/2019/10/14/callee和caller/index.html">
+<meta property="og:title" content="深浅拷贝">
+<meta property="og:url" content="http://1142596854.github.io/2019/10/14/深浅拷贝/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta property="og:description" content="参考 https://juejin.im/post/5b5dcf8351882519790c9a2e 浅拷贝浅拷贝只会将对象的各个属性进行依次复制，并不会进行递归复制，也就是说只会赋值目标对象的第一层属性。 对于目标对象第一层为基本数据类型的数据，就是直接赋值，即「传值」； 而对于目标对象第一层为引用数据类型的数据，就是直接赋存于栈内存中的堆内存地址，即「传址」。 实现：  Object.assi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-14T10:13:04.854Z">
+<meta property="og:updated_time" content="2019-10-14T10:37:43.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="callee和caller">
-<meta name="twitter:description" content="参考 argumentsarguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收 123456function fun(f1)&amp;#123;    console.log(f1);    console.log(arguments[0]);    console.log(arguments[1]);  &amp;#125;fun(1,2);  arguments还可">
+<meta name="twitter:title" content="深浅拷贝">
+<meta name="twitter:description" content="参考 https://juejin.im/post/5b5dcf8351882519790c9a2e 浅拷贝浅拷贝只会将对象的各个属性进行依次复制，并不会进行递归复制，也就是说只会赋值目标对象的第一层属性。 对于目标对象第一层为基本数据类型的数据，就是直接赋值，即「传值」； 而对于目标对象第一层为引用数据类型的数据，就是直接赋存于栈内存中的堆内存地址，即「传址」。 实现：  Object.assi">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://1142596854.github.io/2019/10/14/callee和caller/">
+  <link rel="canonical" href="http://1142596854.github.io/2019/10/14/深浅拷贝/">
 
 
 
 
 
-  <title>callee和caller | 博客</title>
+  <title>深浅拷贝 | 博客</title>
   
 
 
@@ -236,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/14/callee和caller/">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/14/深浅拷贝/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sakura Chiyo">
@@ -253,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">callee和caller</h1>
+          <h1 class="post-title" itemprop="name headline">深浅拷贝</h1>
         
 
         <div class="post-meta">
@@ -265,7 +265,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T17:17:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T18:23:47+08:00">
                 2019-10-14
               </time>
             
@@ -303,26 +303,44 @@
       
 
       
-        <p><a href="https://juejin.im/entry/58184ccda22b9d00679976c0" target="_blank" rel="noopener">参考</a></p>
-<h1 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h1><p>arguments和数组类似但不是数组、它保存着函数调用时传递过来的所有参数、下标从0开始顺序接收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fun(f1)&#123;</span><br><span class="line">    console.log(f1);</span><br><span class="line">    console.log(arguments[0]);</span><br><span class="line">    console.log(arguments[1]);  </span><br><span class="line">&#125;</span><br><span class="line">fun(1,2);</span><br></pre></td></tr></table></figure>
+        <p><a href="https://juejin.im/post/5acc7e606fb9a028c67609f7#heading-2" target="_blank" rel="noopener">参考</a></p>
+<p><a href="https://juejin.im/post/5b5dcf8351882519790c9a2e" target="_blank" rel="noopener">https://juejin.im/post/5b5dcf8351882519790c9a2e</a></p>
+<h1 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h1><p>浅拷贝只会将对象的各个属性进行依次复制，并不会进行递归复制，也就是说只会赋值目标对象的第一层属性。</p>
+<p>对于目标对象第一层为基本数据类型的数据，就是直接赋值，即「传值」； 而对于目标对象第一层为引用数据类型的数据，就是直接赋存于栈内存中的堆内存地址，即「传址」。</p>
+<p>实现：</p>
+<ul>
+<li><p><code>Object.assign</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">    username: &apos;kobe&apos;</span><br><span class="line">    &#125;;</span><br><span class="line">let obj2 = Object.assign(&#123;&#125;,obj);</span><br><span class="line">obj2.username = &apos;wade&apos;;</span><br><span class="line">console.log(obj);//&#123;username: &quot;kobe&quot;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.prototype.concat()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 3, &#123;</span><br><span class="line">    username: &apos;kobe&apos;</span><br><span class="line">    &#125;];</span><br><span class="line">let arr2=arr.concat();    </span><br><span class="line">arr2[2].username = &apos;wade&apos;;</span><br><span class="line">console.log(arr);</span><br></pre></td></tr></table></figure>
 
-<p>arguments还可以帮助我们在javascript中实现函数重载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function fun(f1) &#123;</span><br><span class="line">        if(arguments.length === 1) &#123;</span><br><span class="line">            console.log(&quot;我是一个参数的fun:&quot;+arguments[0]);</span><br><span class="line">        &#125; else if(arguments.length === 2) &#123;</span><br><span class="line">            console.log(&quot;我是两个参数的fun:&quot;+arguments[0]+arguments[1]);</span><br><span class="line">        &#125; else if(arguments.length === 3) &#123;</span><br><span class="line">            console.log(&quot;我是三个参数的fun:&quot;+arguments[0]+arguments[1]+arguments[2]);</span><br><span class="line">        &#125; else&#123;</span><br><span class="line">            console.log(&quot;参数太多啦&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">fun(1,&quot;kx&quot;);</span><br></pre></td></tr></table></figure>
+<p>修改新对象会改到原对象</p>
+</li>
+<li><p>Array.prototype.slice()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 3, &#123;</span><br><span class="line">    username: &apos; kobe&apos;</span><br><span class="line">    &#125;];</span><br><span class="line">let arr3 = arr.slice();</span><br><span class="line">arr3[2].username = &apos;wade&apos;</span><br><span class="line">console.log(arr);</span><br></pre></td></tr></table></figure>
 
-<p>arguments对象不是一个Array、它类似于Array，但不具有除了length方法的任何方法，但它可以被转换为一个真正的Array</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr = Array.prototype.slice.call(arguments);</span><br></pre></td></tr></table></figure>
+<p>修改新对象会改到原对象</p>
+</li>
+</ul>
+<h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><p>深拷贝不同于浅拷贝，它不只拷贝目标对象的第一层属性，而是递归拷贝目标对象的所有属性。</p>
+<p>一般来说，在JavaScript中考虑复合类型的深层复制的时候，往往就是指对于 <code>Date</code> 、<code>Object</code> 与 <code>Array</code> 这三个复合类型的处理。我们能想到的最常用的方法就是先创建一个空的新对象，然后递归遍历旧对象，直到发现基础类型的子节点才赋予到新对象对应的位置。</p>
+<p>不过这种方法会存在一个问题，就是 JavaScript 中存在着神奇的原型机制，并且这个原型会在遍历的时候出现，然后需要考虑原型应不应该被赋予给新对象。那么在遍历的过程中，我们可以考虑使用 <code>hasOwnProperty</code> 方法来判断是否过滤掉那些继承自原型链上的属性。</p>
+<p>实现：</p>
+<ul>
+<li><p>JSON.parse(JSON.stringify())</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1, 3, &#123;</span><br><span class="line">    username: &apos; kobe&apos;</span><br><span class="line">&#125;];</span><br><span class="line">let arr4 = JSON.parse(JSON.stringify(arr));</span><br><span class="line">arr4[2].username = &apos;duncan&apos;; </span><br><span class="line">console.log(arr, arr4)</span><br></pre></td></tr></table></figure>
 
-<h1 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h1><p>callee是arguments对象的一个属性、用来指向当前执行的函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">&#125;</span><br><span class="line">fun();function fun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure>
+<p><strong>这种方法虽然可以实现数组或对象深拷贝,但不能处理函数</strong></p>
+</li>
+<li><p>手写递归方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line">    let objClone = Array.isArray(obj)?[]:&#123;&#125;;</span><br><span class="line">    if(obj &amp;&amp; typeof obj===&quot;object&quot;)&#123;</span><br><span class="line">        for(key in obj)&#123;</span><br><span class="line">            if(obj.hasOwnProperty(key))&#123;</span><br><span class="line">                //判断ojb子元素是否为对象，如果是，递归复制</span><br><span class="line">                if(obj[key]&amp;&amp;typeof obj[key] ===&quot;object&quot;)&#123;</span><br><span class="line">                    objClone[key] = deepClone(obj[key]);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    //如果不是，简单复制</span><br><span class="line">                    objClone[key] = obj[key];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return objClone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数库lodash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var _ = require(&apos;lodash&apos;);</span><br><span class="line">var obj1 = &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &#123; f: &#123; g: 1 &#125; &#125;,</span><br><span class="line">    c: [1, 2, 3]</span><br><span class="line">&#125;;</span><br><span class="line">var obj2 = _.cloneDeep(obj1);</span><br><span class="line">console.log(obj1.b.f === obj2.b.f);</span><br><span class="line">// false</span><br></pre></td></tr></table></figure>
 
-<p>返回的就是fun函数本身</p>
-<p>我们还可以用它来验证传入的参数是否与形参相等</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fun(fun1,fun2)&#123;</span><br><span class="line">    if(arguments.length===arguments.callee.length)&#123;</span><br><span class="line">        console.log(&quot;参数正确&quot;);</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        console.log(&quot;参数不正确&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fun(1,1);</span><br></pre></td></tr></table></figure>
-
-<h1 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h1><p>caller是function对象的一个属性用于返回一个function引用、它返回调用它的function对象、若直接在全局环境下调用fun1 则返回null、在fun2里调用之后返回fun2、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fun1()&#123;</span><br><span class="line">console.log(arguments.callee.caller);</span><br><span class="line">&#125;</span><br><span class="line">function fun2()&#123;</span><br><span class="line">    fun1();</span><br><span class="line">&#125;</span><br><span class="line">fun1();</span><br><span class="line">fun2();</span><br></pre></td></tr></table></figure>
-
+</li>
+</ul>
 
       
     </div>
@@ -347,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/14/null和undefined/" rel="next" title="null和undefined">
-                <i class="fa fa-chevron-left"></i> null和undefined
+              <a href="/2019/10/14/callee和caller/" rel="next" title="callee和caller">
+                <i class="fa fa-chevron-left"></i> callee和caller
               </a>
             
           </div>
@@ -357,8 +375,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/14/深浅拷贝/" rel="prev" title="深浅拷贝">
-                深浅拷贝 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/14/防抖节流/" rel="prev" title="防抖节流">
+                防抖节流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#arguments"><span class="nav-number">1.</span> <span class="nav-text">arguments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#callee"><span class="nav-number">2.</span> <span class="nav-text">callee</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#caller"><span class="nav-number">3.</span> <span class="nav-text">caller</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深拷贝"><span class="nav-number">2.</span> <span class="nav-text">深拷贝</span></a></li></ol></div>
             
 
           </div>
