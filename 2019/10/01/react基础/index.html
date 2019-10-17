@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HelloWorld 1234567891011121314151617181920&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;  &amp;lt;title&amp;gt;01_HelloWorld&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;  &amp;lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react基础">
+<meta property="og:url" content="http://1142596854.github.io/2019/10/01/react基础/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="HelloWorld 1234567891011121314151617181920&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;  &amp;lt;title&amp;gt;01_HelloWorld&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;  &amp;lt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/1.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/2.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/3.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/4.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/5.png">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/01/react基础/6.png">
+<meta property="og:updated_time" content="2019-10-16T15:31:11.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react基础">
+<meta name="twitter:description" content="HelloWorld 1234567891011121314151617181920&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;  &amp;lt;title&amp;gt;01_HelloWorld&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;  &amp;lt;">
+<meta name="twitter:image" content="http://1142596854.github.io/2019/10/01/react基础/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://1142596854.github.io/2019/10/01/react基础/">
+
+
+
+
+
+  <title>react基础 | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/01/react基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakura Chiyo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T21:37:59+08:00">
+                2019-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1><p><img src="//1142596854.github.io/2019/10/01/react基础/1.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;01_HelloWorld&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;test&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/babel&quot;&gt; //必须声明babel</span><br><span class="line">    // 创建虚拟DOM元素</span><br><span class="line">    const vDom = &lt;h1&gt;Hello React&lt;/h1&gt; // 千万不要加引号</span><br><span class="line">    // 渲染虚拟DOM到页面真实DOM容器中</span><br><span class="line">    ReactDOM.render(vDom, document.getElementById(&apos;test&apos;))</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;02_JSX_DEMO&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h2&gt;前端JS框架列表&lt;/h2&gt;</span><br><span class="line">  &lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;example2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">    /*</span><br><span class="line">     功能: 动态展示列表数据</span><br><span class="line">     */</span><br><span class="line">    /*</span><br><span class="line">     技术点:</span><br><span class="line">     1). 使用JSX创建虚拟DOM</span><br><span class="line">     2). React能自动遍历显示数组中所有的元素</span><br><span class="line">     3). array.map()的使用</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    // 数据的数组</span><br><span class="line">    var names = [&apos;jquery&apos;, &apos;zeptoo&apos;, &apos;angular&apos;, &apos;react全家桶&apos;, &apos;vue全家桶&apos;]</span><br><span class="line"></span><br><span class="line">    // 数据的数组--&gt;标签的数组</span><br><span class="line">    var lis = []</span><br><span class="line">    names.forEach((name, index) =&gt; lis.push(&lt;li key=&#123;index&#125;&gt;&#123;name&#125;&lt;/li&gt;))</span><br><span class="line">    // 创建虚拟DOM</span><br><span class="line">    const ul = &lt;ul&gt;&#123;lis&#125;&lt;/ul&gt;</span><br><span class="line">    // 渲染虚拟DOM</span><br><span class="line">    ReactDOM.render(ul, document.getElementById(&apos;example1&apos;))</span><br><span class="line">    const ul2 = &lt;ul&gt;&#123;</span><br><span class="line">      names.map((name, index) =&gt; &lt;li key=&#123;index&#125;&gt;&#123;name&#125;&lt;/li&gt;)</span><br><span class="line">    &#125;&lt;/ul&gt;</span><br><span class="line">    ReactDOM.render(ul2, document.getElementById(&apos;example2&apos;))</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/01/react基础/2.png" alt></p>
+<h1 id="组件DEMO"><a href="#组件DEMO" class="headerlink" title="组件DEMO"></a>组件DEMO</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;03_component_basic&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;example2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">    // 1. 定义组件</span><br><span class="line">    /*方式1: 工厂函数组件(简单组件)*/</span><br><span class="line">    function MyComponent () &#123;</span><br><span class="line">      return &lt;h2&gt;工厂函数组件(简单组件)&lt;/h2&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    /*方式2: ES6类组件(复杂组件)*/</span><br><span class="line">    class MyComponent2 extends React.Component &#123;</span><br><span class="line">      render () &#123;</span><br><span class="line">        console.log(this) // MyComponent2的实例对象</span><br><span class="line">        return &lt;h2&gt;ES6类组件(复杂组件)&lt;/h2&gt;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 2. 渲染组件标签</span><br><span class="line">    ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById(&apos;example1&apos;))</span><br><span class="line">    ReactDOM.render(&lt;MyComponent2 /&gt;, document.getElementById(&apos;example2&apos;))</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/01/react基础/3.png" alt></p>
+<h1 id="组件state"><a href="#组件state" class="headerlink" title="组件state"></a>组件state</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;07_component_state&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">  /*</span><br><span class="line">  需求: 自定义组件, 功能说明如下</span><br><span class="line">    1. 显示h2标题, 初始文本为: 你喜欢我</span><br><span class="line">    2. 点击标题更新为: 我喜欢你</span><br><span class="line">  */</span><br><span class="line">  class Like extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props)</span><br><span class="line">      // 初始化状态</span><br><span class="line">      this.state = &#123;</span><br><span class="line">        isLikeMe: true</span><br><span class="line">      &#125;</span><br><span class="line">      // 绑定this为组件对象</span><br><span class="line">      this.change = this.change.bind(this)</span><br><span class="line">    &#125;</span><br><span class="line">    change () &#123;</span><br><span class="line">      // 更新状态: this.setState()</span><br><span class="line">      // this.state.isLikeMe = !this.state.isLikeMe // 不能更新更新某个状态</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        isLikeMe: !this.state.isLikeMe</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render () &#123;</span><br><span class="line">      console.log(&apos;render()&apos;)</span><br><span class="line">      const text = this.state.isLikeMe ? &apos;你喜欢我&apos; : &apos;我喜欢你&apos;</span><br><span class="line">      return &lt;h2 onClick=&#123;this.change&#125;&gt;&#123;text&#125;&lt;/h2&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ReactDOM.render(&lt;Like /&gt;, document.getElementById(&apos;example&apos;))</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/01/react基础/4.png" alt></p>
+<p>点击状态发生切换</p>
+<h1 id="组件props"><a href="#组件props" class="headerlink" title="组件props"></a>组件props</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;04_component_props&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;div id=&quot;example2&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/prop-types.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">需求: 自定义用来显示一个人员信息的组件, 效果如页面. 说明</span><br><span class="line">  1). 如果性别没有指定, 默认为男</span><br><span class="line">  2). 如果年龄没有指定, 默认为18</span><br><span class="line">  */</span><br><span class="line"></span><br><span class="line">  //1. 定义组件类</span><br><span class="line">  class Person extends React.Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      console.log(this)</span><br><span class="line">      return (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;姓名: &#123;this.props.name&#125;&lt;/li&gt;</span><br><span class="line">          &lt;li&gt;性别: &#123;this.props.sex&#125;&lt;/li&gt;</span><br><span class="line">          &lt;li&gt;年龄: &#123;this.props.age&#125;&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 对标签属性进行限制</span><br><span class="line">  Person.propTypes = &#123;</span><br><span class="line">    name: PropTypes.string.isRequired,</span><br><span class="line">    sex: PropTypes.string,</span><br><span class="line">    age: PropTypes.number</span><br><span class="line">  &#125;</span><br><span class="line">  // 指定属性的默认值</span><br><span class="line">  Person.defaultProps = &#123;</span><br><span class="line">    sex: &apos;男&apos;,</span><br><span class="line">    age: 18</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //2. 渲染组件标签</span><br><span class="line">  const person = &#123;</span><br><span class="line">    name: &apos;Tom&apos;,</span><br><span class="line">    sex: &apos;女&apos;,</span><br><span class="line">    age: 18</span><br><span class="line">  &#125;</span><br><span class="line">  ReactDOM.render(&lt;Person &#123;...person&#125;/&gt;, document.getElementById(&apos;example1&apos;))</span><br><span class="line">  const person2 = &#123;</span><br><span class="line">    myName: &apos;JACK&apos;,</span><br><span class="line">    age: 17</span><br><span class="line">  &#125;</span><br><span class="line">  ReactDOM.render(&lt;Person name=&#123;person2.myName&#125; age=&#123;person2.age&#125;/&gt;,</span><br><span class="line">    document.getElementById(&apos;example2&apos;))</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="//1142596854.github.io/2019/10/01/react基础/5.png" alt></p>
+<h1 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;07_component_refs&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">  &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">    /*</span><br><span class="line">    需求: 自定义组件, 功能说明如下:</span><br><span class="line">      1. 界面如果页面所示</span><br><span class="line">      2. 点击按钮, 提示第一个输入框中的值</span><br><span class="line">      3. 当第2个输入框失去焦点时, 提示这个输入框中的值</span><br><span class="line">   */</span><br><span class="line">    //定义组件</span><br><span class="line">    class MyComponent extends React.Component &#123;</span><br><span class="line">      constructor(props) &#123;</span><br><span class="line">        super(props) // 调用父类(Component)的构造函数</span><br><span class="line">        //console.log(this)</span><br><span class="line">        // 将自定义的函数强制绑定为组件对象</span><br><span class="line">        this.handleClick = this.handleClick.bind(this) // 将返回函数中的this强制绑定为指定的对象, 并没有改变原来的函数中的this</span><br><span class="line">      &#125;</span><br><span class="line">      // 自定义的方法中的this默认为null</span><br><span class="line">      handleClick () &#123;</span><br><span class="line">        // alert(this) //this默认是null, 而不是组件对象</span><br><span class="line">        // 得到绑定在当前组件对象上的input的值</span><br><span class="line">        alert(this.msgInput.value)</span><br><span class="line">      &#125;</span><br><span class="line">      handleBlur (event) &#123;</span><br><span class="line">        alert(event.target.value)</span><br><span class="line">      &#125;</span><br><span class="line">      render () &#123;</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;input type=&quot;text&quot; ref=&#123;input =&gt; this.msgInput = input&#125;/&gt;&#123;&apos; &apos;&#125;</span><br><span class="line">            &lt;button onClick=&#123;this.handleClick&#125;&gt;提示输入数据&lt;/button&gt;&#123;&apos; &apos;&#125;</span><br><span class="line">            &lt;input type=&quot;text&quot; placeholder=&quot;失去焦点提示数据&quot; onBlur=&#123;this.handleBlur&#125;/&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 渲染组件标签</span><br><span class="line">    ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById(&apos;example&apos;))</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>React的ref有3种用法：</p>
+<ol>
+<li><p>字符串(已废弃)</p>
+<p>dom节点上使用，通过this.refs[refName]来引用真实的dom节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input ref=&quot;inputRef&quot; /&gt; //this.refs[&apos;inputRef&apos;]来访问</span><br></pre></td></tr></table></figure>
+
+<p>类组件上使用，通过this.refs[refName]来引用组件的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;CustomInput ref=&quot;comRef&quot; /&gt; //this.refs[&apos;comRef&apos;]来访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回调函数</p>
+<p>调函数就是在dom节点或组件上挂载函数，函数的入参是dom节点或组件实例，达到的效果与字符串形式是一样的，<br>都是获取其引用。</p>
+<p>回调函数的触发时机：</p>
+<p>\1. 组件渲染后，即componentDidMount后<br>\2. 组件卸载后，即componentWillMount后，此时，入参为null<br>\3. ref改变后</p>
+<ul>
+<li><p>dom节点上使用回调函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input ref=&#123;(input) =&gt; &#123;this.textInput = input;&#125;&#125; type=&quot;text&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类组件上使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;CustomInput ref=&#123;(input) =&gt; &#123;this.textInput = input;&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可用通过props跨级传递的方式来获取子孙级dom节点或组件实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function CustomTextInput(props) &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;input ref=&#123;props.inputRef&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line">function Parent(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      My input: &lt;CustomTextInput inputRef=&#123;props.inputRef&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">class Grandparent extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Parent</span><br><span class="line">        inputRef=&#123;el =&gt; this.inputElement = el&#125;</span><br><span class="line">      \/&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>React.createRef() （React16.3提供）</p>
+<p>在React 16.3版本后，使用此方法来创建ref。将其赋值给一个变量，通过ref挂载在dom节点或组件上，该ref的current属性<br>将能拿到dom节点或组件的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Child extends React.Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.myRef=React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        console.log(this.myRef.current);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;input ref=&#123;this.myRef&#125;/&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="简单的todolist"><a href="#简单的todolist" class="headerlink" title="简单的todolist"></a>简单的todolist</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;05_components_composing&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/prop-types.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">    /*</span><br><span class="line">    1)拆分组件: 拆分界面,抽取组件</span><br><span class="line">    2)实现静态组件: 使用组件实现静态页面效果</span><br><span class="line">    3)实现动态组件</span><br><span class="line">        ① 动态显示初始化数据</span><br><span class="line">        ② 交互功能(从绑定事件监听开始)</span><br><span class="line">     */</span><br><span class="line">    // 应用组件</span><br><span class="line">    class App extends React.Component &#123;</span><br><span class="line">      constructor (props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">        // 初始化状态</span><br><span class="line">        this.state = &#123;</span><br><span class="line">          todos: [&apos;吃饭&apos;, &apos;睡觉&apos;, &apos;打豆豆&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">        this.add = this.add.bind(this)</span><br><span class="line">      &#125;</span><br><span class="line">      add (todo) &#123;</span><br><span class="line">        const &#123;todos&#125; = this.state</span><br><span class="line">        todos.unshift(todo)</span><br><span class="line">        //更新状态</span><br><span class="line">        this.setState(&#123;todos&#125;)</span><br><span class="line">      &#125;</span><br><span class="line">      render () &#123;</span><br><span class="line">        const &#123;todos&#125; = this.state</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;TodoAdd add=&#123;this.add&#125; count=&#123;todos.length&#125; /&gt;</span><br><span class="line">            &lt;TodoList todos=&#123;todos&#125; /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 添加todo组件</span><br><span class="line">    class TodoAdd extends React.Component &#123;</span><br><span class="line">      constructor (props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.addTodo = this.addTodo.bind(this)</span><br><span class="line">      &#125;</span><br><span class="line">      addTodo () &#123;</span><br><span class="line">        // 读取输入数据</span><br><span class="line">        const text = this.input.value.trim()</span><br><span class="line">        // 查检</span><br><span class="line">        if(!text) &#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        // 保存到todos</span><br><span class="line">        this.props.add(text)</span><br><span class="line">        // 清除输入</span><br><span class="line">        this.input.value = &apos;&apos;</span><br><span class="line">      &#125;</span><br><span class="line">      render () &#123;</span><br><span class="line">        return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;Simple TODO List&lt;/h2&gt;</span><br><span class="line">            &lt;input type=&quot;text&quot; ref=&#123;input =&gt; this.input=input&#125;/&gt;</span><br><span class="line">            &lt;button onClick=&#123;this.addTodo&#125;&gt;Add #&#123;this.props.count&#125;&lt;/button&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TodoAdd.propTypes = &#123;</span><br><span class="line">      add: PropTypes.func.isRequired,</span><br><span class="line">      count: PropTypes.number.isRequired</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // todo列表组件</span><br><span class="line">    class TodoList extends React.Component &#123;</span><br><span class="line">      render () &#123;</span><br><span class="line">        const &#123;todos&#125; = this.props</span><br><span class="line">        return (</span><br><span class="line">          &lt;ul&gt;</span><br><span class="line">            &#123;</span><br><span class="line">              todos.map((todo, index) =&gt; &lt;li key=&#123;index&#125;&gt;&#123;todo&#125;&lt;/li&gt;)</span><br><span class="line">            &#125;</span><br><span class="line">          &lt;/ul&gt;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TodoList.propTypes = &#123;</span><br><span class="line">      todos: PropTypes.array.isRequired</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 渲染应用组件标签</span><br><span class="line">    ReactDOM.render(&lt;App /&gt;, document.getElementById(&apos;example&apos;))</span><br><span class="line"></span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p> <img src="//1142596854.github.io/2019/10/01/react基础/6.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/26/koa2相关/" rel="next" title="koa2相关">
+                <i class="fa fa-chevron-left"></i> koa2相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/03/react基础2/" rel="prev" title="react基础2">
+                react基础2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Sakura Chiyo">
+            
+              <p class="site-author-name" itemprop="name">Sakura Chiyo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HelloWorld"><span class="nav-number">1.</span> <span class="nav-text">HelloWorld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSX"><span class="nav-number">2.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件DEMO"><span class="nav-number">3.</span> <span class="nav-text">组件DEMO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件state"><span class="nav-number">4.</span> <span class="nav-text">组件state</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件props"><span class="nav-number">5.</span> <span class="nav-text">组件props</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#refs"><span class="nav-number">6.</span> <span class="nav-text">refs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单的todolist"><span class="nav-number">7.</span> <span class="nav-text">简单的todolist</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakura Chiyo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

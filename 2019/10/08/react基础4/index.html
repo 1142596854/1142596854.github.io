@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考 父子组件传值父组件向子组件传递内容，靠属性的形式传递 1&amp;lt;XiaojiejieItem content=&amp;#123;item&amp;#125; /&amp;gt;  1234567891011import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;; //imrcclass XiaojiejieItem  extends Compone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react基础4">
+<meta property="og:url" content="http://1142596854.github.io/2019/10/08/react基础4/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="参考 父子组件传值父组件向子组件传递内容，靠属性的形式传递 1&amp;lt;XiaojiejieItem content=&amp;#123;item&amp;#125; /&amp;gt;  1234567891011import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;; //imrcclass XiaojiejieItem  extends Compone">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://1142596854.github.io/2019/10/08/react基础4/1.png">
+<meta property="og:updated_time" content="2019-10-17T07:59:17.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react基础4">
+<meta name="twitter:description" content="参考 父子组件传值父组件向子组件传递内容，靠属性的形式传递 1&amp;lt;XiaojiejieItem content=&amp;#123;item&amp;#125; /&amp;gt;  1234567891011import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;; //imrcclass XiaojiejieItem  extends Compone">
+<meta name="twitter:image" content="http://1142596854.github.io/2019/10/08/react基础4/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://1142596854.github.io/2019/10/08/react基础4/">
+
+
+
+
+
+  <title>react基础4 | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/10/08/react基础4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakura Chiyo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react基础4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T14:28:27+08:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://jspang.com/posts/2019/05/04/new-react-base.html#%E7%AC%AC07%E8%8A%82%EF%BC%9Areact%E5%AE%9E%E4%BE%8B-%E5%B0%8F%E5%A7%90%E5%A7%90%E6%9C%8D%E5%8A%A1%E8%8F%9C%E5%8D%95" target="_blank" rel="noopener">参考</a></p>
+<h1 id="父子组件传值"><a href="#父子组件传值" class="headerlink" title="父子组件传值"></a>父子组件传值</h1><p><strong>父组件向子组件传递内容，靠属性的形式传递</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;XiaojiejieItem content=&#123;item&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;; //imrc</span><br><span class="line">class XiaojiejieItem  extends Component &#123; //cc</span><br><span class="line">   </span><br><span class="line">    render() &#123; </span><br><span class="line">        return ( </span><br><span class="line">            &lt;div&gt;&#123;this.props.content&#125;&lt;/div&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">export default XiaojiejieItem;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子组件向父组件传值</strong></p>
+<p>在子组件中先绑定事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;; //imrc</span><br><span class="line">class XiaojiejieItem  extends Component &#123; //cc</span><br><span class="line">   </span><br><span class="line">    render() &#123; </span><br><span class="line">        return ( </span><br><span class="line">            &lt;div onClick=&#123;this.handleClick&#125;&gt;&#123;this.props.content&#125;&lt;/div&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line">        console.log(&apos;撩拨了小姐姐&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">export default XiaojiejieItem;</span><br></pre></td></tr></table></figure>
+
+<p>父组件中给子组件绑定key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        this.state.list.map((item,index)=&gt;&#123;</span><br><span class="line">            return (</span><br><span class="line">                &lt;XiaojiejieItem </span><br><span class="line">                key=&#123;index+item&#125;  </span><br><span class="line">                content=&#123;item&#125; /&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子组件调用父组件方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        this.state.list.map((item,index)=&gt;&#123;</span><br><span class="line">            return (</span><br><span class="line">                &lt;XiaojiejieItem </span><br><span class="line">                key=&#123;index+item&#125;  </span><br><span class="line">                content=&#123;item&#125;</span><br><span class="line">                index=&#123;index&#125;</span><br><span class="line">                //关键代码-------------------start</span><br><span class="line">                deleteItem=&#123;this.deleteItem.bind(this)&#125;</span><br><span class="line">                //关键代码-------------------end</span><br><span class="line">                /&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>xiaojiejieitem里面添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleClick()&#123;</span><br><span class="line">    this.props.deleteItem(this.props.index)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h1><p>引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &apos;prop-types&apos;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在子组件的最下面写入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XiaojiejieItem.propTypes=&#123;</span><br><span class="line">    content:PropTypes.string,</span><br><span class="line">    deleteItem:PropTypes.func,</span><br><span class="line">    index:PropTypes.number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>全部代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;; //imrc</span><br><span class="line">import PropTypes from &apos;prop-types&apos;</span><br><span class="line"></span><br><span class="line">class XiaojiejieItem  extends Component &#123; //cc</span><br><span class="line">   </span><br><span class="line">   constructor(props)&#123;</span><br><span class="line">       super(props)</span><br><span class="line">       this.handleClick=this.handleClick.bind(this)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">    render() &#123; </span><br><span class="line">        return ( </span><br><span class="line">            &lt;div onClick=&#123;this.handleClick&#125;&gt;</span><br><span class="line">                &#123;this.props.content&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line">        </span><br><span class="line">        this.props.deleteItem(this.props.index)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"> //--------------主要代码--------start</span><br><span class="line">XiaojiejieItem.propTypes=&#123;</span><br><span class="line">    content:PropTypes.string,</span><br><span class="line">    deleteItem:PropTypes.func,</span><br><span class="line">    index:PropTypes.number</span><br><span class="line">&#125;</span><br><span class="line"> //--------------主要代码--------end</span><br><span class="line">export default XiaojiejieItem;</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置必须传值</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avname:PropTypes.string.isRequired</span><br></pre></td></tr></table></figure>
+
+<p>设置默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XiaojiejieItem.defaultProps = &#123;</span><br><span class="line">    avname:<span class="string">'DEFAULT'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ref的使用"><a href="#ref的使用" class="headerlink" title="ref的使用"></a>ref的使用</h1><p>如果要使用<code>ref</code>来进行，需要先在<code>JSX</code>中进行绑定， 绑定时最好使用ES6语法中的箭头函数，这样可以简洁明了的绑定DOM元素。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input </span><br><span class="line">    id=<span class="string">"jspang"</span> </span><br><span class="line">    className=<span class="string">"input"</span> </span><br><span class="line">    value=&#123;<span class="keyword">this</span>.state.inputValue&#125; </span><br><span class="line">    onChange=&#123;<span class="keyword">this</span>.inputChange.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">    <span class="comment">//关键代码——----------start</span></span><br><span class="line">    ref=&#123;(input)=&gt;&#123;<span class="keyword">this</span>.input=input&#125;&#125;</span><br><span class="line">    <span class="comment">//关键代码------------end</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inputChange()&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        inputValue:<span class="keyword">this</span>.input.value</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用ref要注意的"><a href="#使用ref要注意的" class="headerlink" title="使用ref要注意的"></a>使用ref要注意的</h2><p>比如现在我们要用ref绑定取得要服务的数量，可以先用<code>ref</code>进行绑定。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul ref=&#123;(ul)=&gt;&#123;<span class="keyword">this</span>.ul=ul&#125;&#125;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;XiaojiejieItem </span><br><span class="line">                key=&#123;index+item&#125;  </span><br><span class="line">                content=&#123;item&#125;</span><br><span class="line">                index=&#123;index&#125;</span><br><span class="line">                deleteItem=&#123;<span class="keyword">this</span>.deleteItem.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">                /&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/ul&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>绑定后可以在<code>addList()</code>方法中，获取当前<code>&lt;div&gt;</code>的值.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> addList()&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        list:[...this.state.list,<span class="keyword">this</span>.state.inputValue],</span><br><span class="line">        inputValue:<span class="string">''</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//关键代码--------------start</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.ul.querySelectorAll(<span class="string">'div'</span>).length)</span><br><span class="line">    <span class="comment">//关键代码--------------end</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候你打开控制台，点击添加服务按钮，你会返现数量怎么少一个？（就是这个坑），其实这个坑是因为React中更多<code>setState</code>是一个异步函数所造成的。也就是这个<code>setState</code>，代码执行是有一个时间的，如果你真的想了解清楚，你需要对什么是虚拟DOM有一个了解。简单的说，就是因为是异步，还没等虚拟Dom渲染，我们的<code>console.log</code>就已经执行了。</p>
+<p>那这个代码怎么编写才会完全正常那，其实<code>setState</code>方法提供了一个回调函数，也就是它的第二个函数。下面这样写就可以实现我们想要的方法了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">addList()&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        list:[...this.state.list,<span class="keyword">this</span>.state.inputValue],</span><br><span class="line">        inputValue:<span class="string">''</span></span><br><span class="line">        <span class="comment">//关键代码--------------start</span></span><br><span class="line">    &#125;,()=&gt;&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.ul.querySelectorAll(<span class="string">'div'</span>).length)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//关键代码--------------end</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="react的生命周期1"><a href="#react的生命周期1" class="headerlink" title="react的生命周期1"></a>react的生命周期1</h1><p><img src="//1142596854.github.io/2019/10/08/react基础4/1.png" alt></p>
+<p>通过这张图你可以看到React声明周期的四个大阶段：</p>
+<ol>
+<li><code>Initialization</code>:初始化阶段。</li>
+<li><code>Mounting</code>: 挂在阶段。</li>
+<li><code>Updation</code>: 更新阶段。</li>
+<li><code>Unmounting</code>: 销毁阶段</li>
+</ol>
+<ul>
+<li><code>constructor</code>不算生命周期函数。</li>
+</ul>
+<p><code>constructor</code>我们叫构造函数，它是ES6的基本语法。虽然它和生命周期函数的性质一样，但不能认为是生命周期函数。</p>
+<p>但是你要心里把它当成一个生命周期函数，我个人把它看成React的<code>Initialization</code>阶段，定义属性（props）和状态(state)。</p>
+<h2 id="Mounting阶段"><a href="#Mounting阶段" class="headerlink" title="Mounting阶段"></a>Mounting阶段</h2><ol>
+<li><code>componentWillMount</code> : 在组件即将被挂载到页面的时刻执行。</li>
+<li><code>render</code> : 页面state或props发生变化时执行。</li>
+<li><code>componentDidMount</code> : 组件挂载完成时被执行。</li>
+</ol>
+<p><strong>componentWillMount</strong>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillMount()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'componentWillMount----组件将要挂载到页面的时刻'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>componentDidMount</strong>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'componentDidMount----组件挂载完成的时刻执行'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>render</strong>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'render---组件挂载中.......'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们查看一下控制台，会为我们打出如下提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillMount----组件将要挂载到页面的时刻执行</span><br><span class="line">render----开始挂载渲染</span><br><span class="line">componentDidMount----组件挂载完成的时刻执行</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意的问题</strong></p>
+<p><strong><code>componentWillMount</code>和<code>componentDidMount</code>这两个生命周期函数，只在页面刷新时执行一次，而<code>render</code>函数是只要有state和props变化就会执行，这个初学者一定要注意。</strong></p>
+<h1 id="react生命周期-2"><a href="#react生命周期-2" class="headerlink" title="react生命周期 2"></a>react生命周期 2</h1><h3 id="shouldComponentUpdate函数"><a href="#shouldComponentUpdate函数" class="headerlink" title="shouldComponentUpdate函数"></a>shouldComponentUpdate函数</h3><p><code>shouldComponentUpdate</code>函数会在组件更新之前，自动被执行。比如写入下面的代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'shouldComponentUpdate---组件发生改变前执行'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它要求返回一个布尔类型的结果，必须有返回值，这里就直接返回一个<code>true</code>了（真实开发中，这个是有大作用的）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'shouldComponentUpdate---组件发生改变前执行'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以在控制台<code>console</code>里看到结果了，并且结果是每次文本框发生改变时都会随着改变。如果你返回了<code>false</code>，这组件就不会进行更新了。 简单点说，就是返回true，就同意组件更新;返回false,就反对组件更新。</p>
+<h3 id="componentWillUpdate函数"><a href="#componentWillUpdate函数" class="headerlink" title="#componentWillUpdate函数"></a><a href="http://jspang.com/posts/2019/05/04/new-react-base.html#componentwillupdate%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">#</a>componentWillUpdate函数</h3><p><code>componentWillUpdate</code>在组件更新之前，但<code>shouldComponenUpdate</code>之后被执行。但是如果<code>shouldComponentUpdate</code>返回false，这个函数就不会被执行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//shouldComponentUpdate返回true才会被执行。</span></span><br><span class="line">componentWillUpdate()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'componentWillUpdate---组件更新前，shouldComponentUpdate函数之后执行'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="#componentDidUpdate"></a><a href="http://jspang.com/posts/2019/05/04/new-react-base.html#componentdidupdate" target="_blank" rel="noopener">#</a>componentDidUpdate</h3><p><code>componentDidUpdate</code>在组件更新之后执行，它是组件更新的最后一个环节。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'componentDidUpdate----组件更新之后执行'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了方便我们看出结果，可以在每个函数前加上序号。最后我们可以看到控制台输出的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1-shouldComponentUpdate---组件发生改变前执行</span><br><span class="line">2-componentWillUpdate---组件更新前，shouldComponentUpdate函数之后执行</span><br><span class="line">3-render----开始挂载渲染</span><br><span class="line">4-componentDidUpdate----组件更新之后执行</span><br></pre></td></tr></table></figure>
+
+<p>结果和我们写的顺序也是相对的，讲到这里，你一定对React的生命周期函数有了比较直观的了解了。</p>
+<h3 id="componentWillReceiveProps-函数"><a href="#componentWillReceiveProps-函数" class="headerlink" title="#componentWillReceiveProps 函数"></a><a href="http://jspang.com/posts/2019/05/04/new-react-base.html#componentwillreceiveprops-%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">#</a>componentWillReceiveProps 函数</h3><p>我们可以先在<code>Xiaojiejie.js</code>组件里写下这个函数，例如下面的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'componentWillReceiveProps'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候会发现函数什么时候都不会被执行，因为<code>Xiaojiejie.js</code>算是一个顶层组件，它并没接收任何的<code>props</code>。可以把这个函数移动到<code>XiaojiejieItem.js</code>组件中。</p>
+<p>凡是组件都有生命周期函数，所以子组件也是有的，并且子组件接收了<code>props</code>，这时候函数就可以被执行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'child - componentWillReceiveProps'</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候再预览，就会看到<code>componentWillReceiveProps</code>执行了。那现在可以总结一下它的执行时间了。</p>
+<blockquote>
+<p>子组件接收到父组件传递过来的参数，父组件render函数重新被执行，这个生命周期就会被执行。</p>
+</blockquote>
+<ul>
+<li>也就是说这个组件第一次存在于Dom中，函数是不会被执行的;</li>
+<li>如果已经存在于Dom中，函数才会被执行。</li>
+</ul>
+<h1 id="react生命周期-3"><a href="#react生命周期-3" class="headerlink" title="react生命周期 3"></a>react生命周期 3</h1><h3 id="componentWillUnmount函数"><a href="#componentWillUnmount函数" class="headerlink" title="componentWillUnmount函数"></a>componentWillUnmount函数</h3><p>这个函数时组件从页面中删除的时候执行，比如在<code>XiaojiejieItem.js</code>，写入下面的代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当组件从页面中删除的时候执行</span></span><br><span class="line">componentWillUnmount()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'child - componentWillUnmount'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="解决性能问题"><a href="#解决性能问题" class="headerlink" title="解决性能问题"></a>解决性能问题</h1><p>浏览器的文本框中输入一下内容，你可以清楚的看到子组件也发生了重新<code>render</code>的情况。这个问题看似很小，但是当你页面很复杂时，足以影响用户体验，不要骗自己了。其实用<code>shouldComponentUpdate</code>函数就可以简单的解决调这个问题。</p>
+<p>shouldComponentUpdate有两个参数：</p>
+<ul>
+<li>nextProps:变化后的属性;</li>
+<li>nextState:变化后的状态;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextProps,nextState)&#123;</span><br><span class="line">    <span class="keyword">if</span>(nextProps.content !== <span class="keyword">this</span>.props.content)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/07/react基础3/" rel="next" title="react基础3">
+                <i class="fa fa-chevron-left"></i> react基础3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/10/react-router/" rel="prev" title="react-router">
+                react-router <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Sakura Chiyo">
+            
+              <p class="site-author-name" itemprop="name">Sakura Chiyo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#父子组件传值"><span class="nav-number">1.</span> <span class="nav-text">父子组件传值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PropTypes"><span class="nav-number">2.</span> <span class="nav-text">PropTypes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ref的使用"><span class="nav-number">3.</span> <span class="nav-text">ref的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ref要注意的"><span class="nav-number">3.1.</span> <span class="nav-text">使用ref要注意的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react的生命周期1"><span class="nav-number">4.</span> <span class="nav-text">react的生命周期1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mounting阶段"><span class="nav-number">4.1.</span> <span class="nav-text">Mounting阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react生命周期-2"><span class="nav-number">5.</span> <span class="nav-text">react生命周期 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate函数"><span class="nav-number">5.0.1.</span> <span class="nav-text">shouldComponentUpdate函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUpdate函数"><span class="nav-number">5.0.2.</span> <span class="nav-text">#componentWillUpdate函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">5.0.3.</span> <span class="nav-text">#componentDidUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillReceiveProps-函数"><span class="nav-number">5.0.4.</span> <span class="nav-text">#componentWillReceiveProps 函数</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#react生命周期-3"><span class="nav-number">6.</span> <span class="nav-text">react生命周期 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUnmount函数"><span class="nav-number">6.0.1.</span> <span class="nav-text">componentWillUnmount函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决性能问题"><span class="nav-number">7.</span> <span class="nav-text">解决性能问题</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakura Chiyo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
