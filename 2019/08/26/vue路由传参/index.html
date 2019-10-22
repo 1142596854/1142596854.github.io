@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考 route和router的区别 query通过path切换路由，params通过name切换路由1234// query通过path切换路由&amp;lt;router-link :to=&amp;quot;&amp;#123;path: &amp;apos;Detail&amp;apos;, query: &amp;#123; id: 1 &amp;#125;&amp;#125;&amp;quot;&amp;gt;前往Detail页面&amp;lt;/router-link&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue路由传参">
+<meta property="og:url" content="http://1142596854.github.io/2019/08/26/vue路由传参/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="参考 route和router的区别 query通过path切换路由，params通过name切换路由1234// query通过path切换路由&amp;lt;router-link :to=&amp;quot;&amp;#123;path: &amp;apos;Detail&amp;apos;, query: &amp;#123; id: 1 &amp;#125;&amp;#125;&amp;quot;&amp;gt;前往Detail页面&amp;lt;/router-link&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-18T08:57:30.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue路由传参">
+<meta name="twitter:description" content="参考 route和router的区别 query通过path切换路由，params通过name切换路由1234// query通过path切换路由&amp;lt;router-link :to=&amp;quot;&amp;#123;path: &amp;apos;Detail&amp;apos;, query: &amp;#123; id: 1 &amp;#125;&amp;#125;&amp;quot;&amp;gt;前往Detail页面&amp;lt;/router-link&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://1142596854.github.io/2019/08/26/vue路由传参/">
+
+
+
+
+
+  <title>vue路由传参 | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://1142596854.github.io/2019/08/26/vue路由传参/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakura Chiyo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue路由传参</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T16:46:53+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://juejin.im/post/5b174de8f265da6e410e0b4e" target="_blank" rel="noopener">参考</a></p>
+<p><a href="https://juejin.im/post/5d7f4d44f265da03a53a6951" target="_blank" rel="noopener">route和router的区别</a></p>
+<h1 id="query通过path切换路由，params通过name切换路由"><a href="#query通过path切换路由，params通过name切换路由" class="headerlink" title="query通过path切换路由，params通过name切换路由"></a>query通过path切换路由，params通过name切换路由</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// query通过path切换路由</span><br><span class="line">&lt;router-link :to=&quot;&#123;path: &apos;Detail&apos;, query: &#123; id: 1 &#125;&#125;&quot;&gt;前往Detail页面&lt;/router-link&gt;</span><br><span class="line">// params通过name切换路由</span><br><span class="line">&lt;router-link :to=&quot;&#123;name: &apos;Detail&apos;, params: &#123; id: 1 &#125;&#125;&quot;&gt;前往Detail页面&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="query通过this-route-query接受，params通过this-route-params接受"><a href="#query通过this-route-query接受，params通过this-route-params接受" class="headerlink" title="query通过this.$route.query接受，params通过this.$route.params接受"></a>query通过this.$route.query接受，params通过this.$route.params接受</h1><p>// query通过this.$route.query接收参数 created () {     const id = this.$route.query.id; }  // params通过this.$route.params来接收参数 created () {     const id = this.$route.params.id; }</p>
+<h1 id="展示方式"><a href="#展示方式" class="headerlink" title="展示方式"></a>展示方式</h1><p>query传参的url展现方式：/detail?id=1&amp;user=123&amp;identity=1&amp;更多参数</p>
+<p>params＋动态路由的url方式：/detail/123</p>
+<h1 id="params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面"><a href="#params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面" class="headerlink" title="params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面"></a>params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面</h1><p>{<br>path: ‘/detail/:id’,<br>name: ‘Detail’,<br>component: Detail<br>},</p>
+<h1 id="params刷新后会消失"><a href="#params刷新后会消失" class="headerlink" title="params刷新后会消失"></a>params刷新后会消失</h1><h1 id="route和router的区别"><a href="#route和router的区别" class="headerlink" title="route和router的区别"></a>route和router的区别</h1><h2 id="router是vue的一个实例"><a href="#router是vue的一个实例" class="headerlink" title="router是vue的一个实例"></a>router是vue的一个实例</h2><p>通过Vue.use(VueRouter)和VueRouter构造函数得到一个router的实例对象，这个对象是一个全局对象。它包含了所有的路由以及许多关键的对象和属性。</p>
+<ul>
+<li>push</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 字符串</span><br><span class="line">      this.$router.push(&apos;home&apos;)</span><br><span class="line">// 对象</span><br><span class="line">      this.$router.push(&#123; path: &apos;home&apos; &#125;)</span><br><span class="line">// 命名的路由</span><br><span class="line">      this.$router.push(&#123; name: &apos;user&apos;, params: &#123; userId: 123 &#125;&#125;)</span><br><span class="line">// 带查询参数，变成 /register?plan=123</span><br><span class="line">      this.$router.push(&#123; path: &apos;register&apos;, query: &#123; plan: &apos;123&apos; &#125;&#125;)复制代码</span><br></pre></td></tr></table></figure>
+
+<p>push方法其实和<router-link :to="...">是等同的。<br>注意：push方法的跳转会向 history 栈添加一个新的记录，当我们点击浏览器的返回按钮时可以看到之前的页面。</router-link></p>
+<ul>
+<li>go</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 页面路由跳转 前进或者后退</span><br><span class="line">this.$router.go(-1) // 后退复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>replace</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 替换路由 没有历史记录</span><br><span class="line">$router.replace(&#123;path:&apos;home&apos;&#125;);</span><br><span class="line">// 一般使用replace来做404页面this.$router.replace(&apos;/&apos;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="route是一个路由对象"><a href="#route是一个路由对象" class="headerlink" title="route是一个路由对象"></a>route是一个路由对象</h2><p>每一个路由都会有route对象，它是一个局部对象。$route对象表示当前的路由信息，包含了当前 URL 解析得到的信息。包含当前的路径，参数，query对象等</p>
+<ul>
+<li>path</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$route.path</span><br><span class="line">    字符串，对应当前路由的路径，总是解析为绝对路径，如 &quot;/foo/bar&quot;。复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>params</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$route.params    </span><br><span class="line">    一个 key/value 对象，包含了 动态片段 和 全匹配片段，如果没有路由参数，就是一个空对象。复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>query</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$route.query</span><br><span class="line">      一个 key/value 对象，表示 URL 查询参数。</span><br><span class="line">      例如，对于路径 /foo?user=1，则有 $route.query.user == 1，</span><br><span class="line">      如果没有查询参数，则是个空对象。复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hash</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$route.hash</span><br><span class="line">      当前路由的 hash 值 (不带 #) ，如果没有 hash 值，则为空字符串。锚点复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fullPath</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$route.fullPath</span><br><span class="line">      完成解析后的 URL，包含查询参数和 hash 的完整路径。复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>matched</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$route.matched</span><br><span class="line">      数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$route.name  当前路径名字复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>meta</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$route.meta  路由元信息复制代码</span><br></pre></td></tr></table></figure>
+
+<h1 id="vue修改url后页面不自动刷新数据"><a href="#vue修改url后页面不自动刷新数据" class="headerlink" title="vue修改url后页面不自动刷新数据"></a>vue修改url后页面不自动刷新数据</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">this</span>.getStatus(<span class="keyword">this</span>.$route.path))</span><br><span class="line">&#125;,</span><br><span class="line"> watch: &#123;</span><br><span class="line"> <span class="string">'$route'</span> (to, <span class="keyword">from</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.getStatus(<span class="keyword">this</span>.$route.path))</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line"> getStatus (urlStr) &#123;</span><br><span class="line">  <span class="keyword">var</span> urlStrArr = urlStr.split(<span class="string">'/'</span>)</span><br><span class="line">  <span class="keyword">return</span> urlStrArr[urlStrArr.length - <span class="number">1</span>]</span><br><span class="line"> &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/vueRouter/" rel="next" title="vueRouter">
+                <i class="fa fa-chevron-left"></i> vueRouter
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/01/vuex/" rel="prev" title="vuex">
+                vuex <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Sakura Chiyo">
+            
+              <p class="site-author-name" itemprop="name">Sakura Chiyo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#query通过path切换路由，params通过name切换路由"><span class="nav-number">1.</span> <span class="nav-text">query通过path切换路由，params通过name切换路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#query通过this-route-query接受，params通过this-route-params接受"><span class="nav-number">2.</span> <span class="nav-text">query通过this.$route.query接受，params通过this.$route.params接受</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#展示方式"><span class="nav-number">3.</span> <span class="nav-text">展示方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面"><span class="nav-number">4.</span> <span class="nav-text">params动态传参必须在路由中定义，且跳转时必须加上参数，否则为空白画面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#params刷新后会消失"><span class="nav-number">5.</span> <span class="nav-text">params刷新后会消失</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#route和router的区别"><span class="nav-number">6.</span> <span class="nav-text">route和router的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#router是vue的一个实例"><span class="nav-number">6.1.</span> <span class="nav-text">router是vue的一个实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#route是一个路由对象"><span class="nav-number">6.2.</span> <span class="nav-text">route是一个路由对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue修改url后页面不自动刷新数据"><span class="nav-number">7.</span> <span class="nav-text">vue修改url后页面不自动刷新数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakura Chiyo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
